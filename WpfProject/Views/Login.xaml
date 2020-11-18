@@ -1,0 +1,51 @@
+﻿<Page x:Class="WpfProject.Views.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfProject.Views"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="900"
+      Loaded="Window_Loaded"
+      Title="Login">
+
+    <StackPanel Margin="10 0 0 0">
+        <TextBlock x:Name="AlertText" Height="32" Padding="10 5" Margin="0 0 0 10" Visibility="Collapsed" FontSize="16" Background="Red" Foreground="White"></TextBlock>
+        <Border x:Name="xBorder" BorderBrush="Black" BorderThickness="0.1">
+            <StackPanel x:Name="LoginPanel" Orientation="Horizontal">
+                <StackPanel Width="440">
+                    <StackPanel Height="40" Background="#ececec" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="User" Width="35" Height="35" Margin="1" Foreground="#666666"/>
+                        <TextBlock Margin="0 0 0 5" Padding="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22" Width="440" Height="40" Text="ÜYE GİRİŞ"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Margin="0 0 0 10" Padding="3" Text="Üye giriş bilgilerini giriniz."></TextBlock>
+                    <Label Content="E-Mail"></Label>
+                    <TextBox Name="SignInEmail" Height="30" Padding="2" Margin="5 0 5 5" FontSize="15"></TextBox>
+                    <Label Content="Şifre"></Label>
+                    <PasswordBox Name="SignInPassword" Height="30" Padding="2" Margin="5 0 5 5" FontSize="15"></PasswordBox>
+                    <Button Cursor="Hand" Height="40" Width="150" HorizontalAlignment="Right" Margin="10" Content="GİRİŞ YAP" FontSize="16" Foreground="White" BorderBrush="#012990" Background="#012990" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"></Button>
+                </StackPanel>
+
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                
+                <StackPanel Width="450">
+                    <StackPanel Height="40" Background="#ececec" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="UserAdd" Width="35" Height="35" Margin="1" Foreground="#666666"/>
+                        <TextBlock Margin="0 0 0 5" Padding="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22" Width="450" Height="40"  Background="#ececec" Text="ÜYE KAYIT"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Margin="0 0 0 10" Padding="3" Text="Üyelik Bilgileri"></TextBlock>
+                    <Label Content="E-Mail"></Label>
+                    <TextBox Height="30" Name="SignUpEmail" Padding="2" Margin="5 0 5 5" FontSize="15"></TextBox>
+                    <Label Content="Şifre"></Label>
+                    <PasswordBox Name="SignUpPassword1" Height="30" Padding="2" Margin="5 0 5 5" FontSize="15"></PasswordBox>
+                    <Label Content="Şifre Tekrar"></Label>
+                    <PasswordBox Name="SignUpPassword2" Height="30" Padding="2" Margin="5 0 5 5" FontSize="15"></PasswordBox>
+                    <Button Cursor="Hand" Height="40" Width="150" HorizontalAlignment="Right" Margin="10" Content="KAYIT OL" FontSize="16" Foreground="White" BorderBrush="#012990" Background="#012990" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp_1"></Button>
+                </StackPanel>
+              
+            </StackPanel>
+            
+        </Border>
+    </StackPanel>
+</Page>

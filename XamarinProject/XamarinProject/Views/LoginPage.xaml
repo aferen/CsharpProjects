@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              xmlns:local="clr-namespace:XamarinProject"
+               xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="XamarinProject.Views.LoginPage">
+
+
+
+    <NavigationPage.TitleView>
+        <Image Source="{local:ImageResource XamarinProject.Content.img.logo.png}"
+              WidthRequest="45"
+              HeightRequest="45"
+               Margin="-50,0,0,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="ImageClick"
+                NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+
+    </NavigationPage.TitleView>
+
+    <StackLayout Margin="10">
+        <Label x:Name="AlertText" HeightRequest="32" Padding="10,5" Margin="0,0,0,10" IsVisible="False" FontSize="16" BackgroundColor="Red" TextColor="White"></Label>
+        <Frame Padding="0" x:Name="xBorder" BorderColor="#ececec">
+            <StackLayout x:Name="LoginPanel" Orientation="Horizontal">
+                <StackLayout>
+                    <StackLayout HeightRequest="40" BackgroundColor="#ececec" Orientation="Horizontal">
+                        <iconize:IconImage VerticalOptions="Start" WidthRequest="40" HeightRequest="40" IconSize="25" Icon="fas-user" HorizontalOptions="Start" IconColor="#666666"/>
+                        <Label Margin="0,0,0,5" Padding="5" FontSize="22" WidthRequest="440" HeightRequest="40" Text="ÜYE GİRİŞİ"></Label>
+                    </StackLayout>
+                    <Label Padding="3" Text="Üye giriş bilgilerini giriniz."></Label>
+                    <Label Text="E-Mail"></Label>
+                    <Editor x:Name="SignInEmail" HeightRequest="40" FontSize="15"></Editor>
+                    <Label Text="Şifre"></Label>
+                    <Entry x:Name="SignInPassword" IsPassword="True" HeightRequest="40"  FontSize="15"></Entry>
+                    <Button HeightRequest="40" Margin="10" Clicked="LoginEvent" Text="GİRİŞ YAP" FontSize="16" TextColor="White" BorderColor="#012990" BackgroundColor="#012990"></Button>
+                </StackLayout>
+
+
+                <!--<StackPanel WidthRequest="450">
+                    <StackPanel HeightRequest="40" Background="#ececec" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="UserAdd" WidthRequest="35" HeightRequest="35" Margin="1" Foreground="#666666"/>
+                        <TextBlock Margin="0 0 0 5" Padding="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22" WidthRequest="450" HeightRequest="40"  Background="#ececec" Text="ÜYE KAYIT"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Margin="0 0 0 10" Padding="3" Text="Üyelik Bilgileri"></TextBlock>
+                    <Label Content="E-Mail"></Label>
+                    <TextBox HeightRequest="30" Name="SignUpEmail" Padding="2" Margin="5 0 5 5" FontSize="15"></TextBox>
+                    <Label Content="Şifre"></Label>
+                    <PasswordBox Name="SignUpPassword1" HeightRequest="30" Padding="2" Margin="5 0 5 5" FontSize="15"></PasswordBox>
+                    <Label Content="Şifre Tekrar"></Label>
+                    <PasswordBox Name="SignUpPassword2" HeightRequest="30" Padding="2" Margin="5 0 5 5" FontSize="15"></PasswordBox>
+                    <Button Cursor="Hand" HeightRequest="40" WidthRequest="150" HorizontalAlignment="Right" Margin="10" Content="KAYIT OL" FontSize="16" Foreground="White" BorderBrush="#012990" Background="#012990" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp_1"></Button>
+                </StackPanel>-->
+
+            </StackLayout>
+
+        </Frame>
+    </StackLayout>
+
+
+
+</ContentPage>

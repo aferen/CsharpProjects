@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WpfProject.Views.UserControlMenuItem"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfProject"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             Loaded="Window_Loaded"
+             mc:Ignorable="d" >
+
+    <Grid>
+        <materialDesign:PackIcon Kind="PlusCircle" Width="20" Height="20" Margin="4" Foreground="#018cd1"/>
+        <TextBlock Cursor="Hand" FontSize="13" Text="{Binding Path=Name}" Padding="30 5" PreviewMouseLeftButtonUp="TextBlock_PreviewMouseLeftButtonUp"></TextBlock>
+        <Expander Cursor="Hand" Name="ExpanderMenu1" IsExpanded="False" Padding="2" FontSize="13" Width="260" HorizontalAlignment="Right" Background="{x:Null}" Foreground="Black">
+            <ListBox VirtualizingPanel.IsVirtualizing="False" x:Name="ListViewMenu1" ItemsSource="{Binding Path=SubCategory1List}" FontSize="13" BorderBrush="Transparent" Background="#0AA2EE" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <materialDesign:PackIcon Kind="PlusCircle" Width="20" Height="20" Margin="4" Foreground="White"/>
+                            <TextBlock Cursor="Hand" FontSize="13" Text="{Binding Path=Name}" Padding="30 3" PreviewMouseLeftButtonUp="TextBlock_PreviewMouseLeftButtonUp_2"></TextBlock>
+                            <Expander Cursor="Hand"  x:Name="ExpanderMenu2" IsExpanded="False" Padding="2" FontSize="13" Width="240" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
+                                <ListView VirtualizingPanel.IsVirtualizing="False" x:Name="ListViewMenu2" ItemsSource="{Binding Path=SubCategory2List}" FontSize="13" BorderBrush="Transparent" Background="#3CBEFF" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="ArrowRightCircle" Width="20" Height="20" Margin="4" Foreground="White"/>
+                                                    <TextBlock Cursor="Hand" FontSize="13" Text="{Binding Path=Name}" Padding="4" PreviewMouseLeftButtonUp="TextBlock_PreviewMouseLeftButtonUp_1"></TextBlock>
+                                                </StackPanel>
+                                                <Border BorderBrush="White" Width="260" Height="1" VerticalAlignment="Bottom" BorderThickness="0.4"></Border>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Expander>
+                            <Border BorderBrush="White" Width="240" Height="1" VerticalAlignment="Bottom" BorderThickness="0.4"></Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Expander>
+        <Border BorderBrush="Black" Width="260" Height="1" VerticalAlignment="Bottom" BorderThickness="0.2"></Border>
+    </Grid>
+</UserControl>
+    

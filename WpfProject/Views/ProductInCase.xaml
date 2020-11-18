@@ -1,0 +1,69 @@
+﻿<Page x:Class="WpfProject.Views.ProductInCase"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfProject.Views"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="450" d:DesignWidth="900"
+      Loaded="Window_Loaded"
+      Title="ProductInCase">
+    
+    <Border BorderBrush="Black" BorderThickness="0.1">
+        <StackPanel>
+            <StackPanel Height="400" Visibility="Collapsed" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="NoProduct">
+                <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Name="xIcon" Kind="ShoppingCart" Width="50" Height="50" Margin="50 8 20 2" Foreground="#4D4D4D" Grid.Row="2"/>
+                <TextBlock VerticalAlignment="Center" FontSize="36" Text="Sepetinizde Ürün Bulunmamaktadır"></TextBlock>
+            </StackPanel>
+             <StackPanel x:Name="Case" Orientation="Vertical">
+            <StackPanel Background="#ECECEC" Margin="10" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock FontWeight="Bold" Padding="7" Text="Ürün" Height="30"  Width="200"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                <TextBlock FontWeight="Bold" Padding="7" Text="Ürün Adı" Height="30"  Width="200"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                <TextBlock FontWeight="Bold" Padding="7" Text="Miktar Birim" Height="30"  Width="150"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                <TextBlock FontWeight="Bold" Padding="7" Text="Birim Fiyatı" Height="30"  Width="140"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                <TextBlock FontWeight="Bold" Padding="7" Text="Toplam Tutar" Height="30"  Width="140"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                <TextBlock FontWeight="Bold" Padding="7" Text="Sil" Height="30"  Width="50"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+            </StackPanel>
+            <ItemsControl x:Name="ProductMenu">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ProductPanel" Cursor="Hand" Margin="10 5" Width="875" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <Border BorderBrush="Black" BorderThickness="0.1" Name="xBorder">
+                                <Image x:Name="myImage" HorizontalAlignment="Left" Margin="2" Source="{Binding Image}" Stretch="Fill" Width="195" Height="180" Grid.Column="0"/>
+                            </Border>
+                            <TextBlock VerticalAlignment="Center" Margin="25 30" Width="150" TextWrapping="Wrap" FontWeight="Bold" FontSize="14" Text="{Binding Path=Title}"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Margin="5 30" Width="150" TextWrapping="Wrap" FontSize="14" Text="{Binding Path=CountProduct, StringFormat={}{0} Ürün}"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Margin="0 60" Width="140" TextWrapping="Wrap" FontSize="14" Text="{Binding Path=NewPrice, StringFormat={}{0} TL}"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Margin="0 50" Width="130" TextWrapping="Wrap" FontSize="14" Text="{Binding Path=TotalPrice, StringFormat={}{0} TL}"></TextBlock>
+                            <Button Margin="10 0" VerticalAlignment="Center" Content="X" Height="20" Foreground="White" Background="#012990" Width="20" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Cursor="Hand" Height="40" Width="200" HorizontalAlignment="Right" Margin=" 10" Content="SATIN AL" FontSize="16" Foreground="White" BorderBrush="#EC971F" Background="#EC971F">
+            </Button>
+        </StackPanel>
+        </StackPanel>
+       
+    </Border>
+</Page>

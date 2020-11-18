@@ -1,0 +1,70 @@
+﻿<Page x:Class="WpfProject.View.Navbar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:local="clr-namespace:WpfProject.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="1400"
+      Title="Navbar">
+
+    <Grid Height="200">
+        <Grid  Background="#1EAEF6" Height="30" VerticalAlignment="Top" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <iconPacks:PackIconOcticons VerticalAlignment="Center" Width="10" Height="10" Foreground="White" Kind="MarkGithub" />
+                <Label Cursor="Hand" Content="Facebook ile bağlan" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+
+                <iconPacks:PackIconOcticons VerticalAlignment="Center" Width="10" Height="10" Foreground="White" Kind="Lock" />
+                <Label Cursor="Hand" Content="Üye Girişi" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" PreviewMouseLeftButtonUp="Label_PreviewMouseLeftButtonUp"></Label>
+
+                <iconPacks:PackIconOcticons VerticalAlignment="Center" Width="10" Height="10" Foreground="White" Kind="Person" />
+                <Label Cursor="Hand" Content="Yeni Üyelik" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" PreviewMouseLeftButtonUp="Label_PreviewMouseLeftButtonUp_1"></Label>
+            </StackPanel>
+        </Grid>
+
+        <Grid  Background="#0AA2EE" Height="100" Margin="0,30,0,0" VerticalAlignment="Top">
+            <Image Cursor="Hand" Source="/WpfProject;component/Content/img/logo.png" Height="46" Width="180" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" PreviewMouseLeftButtonUp="Image_PreviewMouseLeftButtonUp"/>
+            <TextBox Name="TextBox1" Foreground="White" VerticalContentAlignment="Center" Height="40" BorderBrush="#018CD1" Background="#018CD1" Width="400" Text="    Aradığınız ürünün adını yazınız." Margin="130,30,160,30"></TextBox>
+            <Button Height="40" Background="White" BorderBrush="White" Width="40" Margin="600,30,260,30">
+                <iconPacks:PackIconOcticons VerticalAlignment="Center" Width="30" Foreground="#1EAEF6" Height="30" Kind="Search" />
+            </Button>
+            <Button Cursor="Hand" Height="40" Background="White" BorderBrush="White" Width="40" HorizontalAlignment="Left" Margin="1140,0,0,0" VerticalAlignment="Center" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp">
+                <iconPacks:PackIconOcticons VerticalAlignment="Center" Width="30" Foreground="#1EAEF6" Height="30" Kind="Briefcase" />
+            </Button>
+            <Label Name="CaseTotal" HorizontalAlignment="Left" Margin="1180,0,0,0" Content="0 Ürün / 0,00 TL" VerticalContentAlignment="Center" Foreground="White" FontWeight="Bold" BorderBrush="#018CD1" Background="#018CD1" VerticalAlignment="Center" Width="130" Height="40"/>
+        </Grid>
+
+        <!--<Grid  Background="#018CD1" Height="40" Margin="60,140,60,0" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="Tüm Kategoriler" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                --><!--<Label Foreground="White" Content="|"/>--><!--
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="Yeni Ürünler" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="Pcb / Dizgi Üretimi" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="Toptan Satış" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="Outlet" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+
+                <Label Width="200" FontWeight="Medium" FontSize="15" Content="İletişim" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            </StackPanel>
+        </Grid>-->
+
+
+        <Grid Background="#018CD1" Height="40" Margin="75,140,74,0" VerticalAlignment="Top">
+            <Menu VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="#018CD1">
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="      Tüm Kategoriler" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="          Yeni Ürünler" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="      Pcb / Dizgi Üretimi" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="          Toptan Satış" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="               Outlet" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+                <MenuItem Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="White" Width="200" FontWeight="Medium" FontSize="15" Header="               İletişim" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></MenuItem>
+           
+            </Menu>
+        </Grid>
+
+
+    </Grid>
+</Page>

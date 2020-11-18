@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              xmlns:local="clr-namespace:XamarinProject"
+             x:Class="XamarinProject.Views.AboutPage">
+
+
+
+    <NavigationPage.TitleView>
+        <Image Source="{local:ImageResource XamarinProject.Content.img.logo.png}"
+              WidthRequest="45"
+              HeightRequest="45"
+               Margin="-50,0,0,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="ImageClick"
+                NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+
+    </NavigationPage.TitleView>
+
+    <ScrollView>
+    <Grid Margin="10">
+        <Frame BorderColor="#ececec">
+            <StackLayout>
+                <Label Margin="0,0,0,1" TextColor="Black" Padding="5" FontSize="22" BackgroundColor="#ececec" Text="Hakkımızda"></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="1979 yılından bugüne elektronik komponent sektöründe faaliyet göstermekte olan İnt-el Elektronik, siz değerli müşterilerimizle birlikte bugünlere gelmiştir. Kuruluş tarihimizden itibaren dünya elektronik teknolojisindeki gelişmeleri sizler için takip etmekteyiz."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Misyonumuz ;"></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Müşteri memnuniyetine dönük yönetim yapılanmamız ile size en uygun tedariği sağlamak."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Dünya markası olan ürünleri, kullanıcılarımıza en uygun fiyatlarla ulaştırmak"></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Kaliteli, uygun maliyetli, doğru ve hızlı hizmet sunmak."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Elektronik komponent sektöründe ülkemizde ve bölgemizde lider bir firma olmak."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Dünya komponent teknolojisindeki gelişmeleri ve değişimleri takip etmek ve kullanıcılarımıza ulaştırmak."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" FontSize="17" Text="Her çeşit elektronik komponent talebini karşılayabilmek amacıyla sürekli portföyümüzü ve ürün çeşitliliğimizi zenginleştirmek."></Label>
+                    <Label Margin="0,0,0,1" TextColor="Black" HorizontalOptions="End" Padding="20,0" FontSize="18" Text="Direnc.net | 2016"></Label>
+            </StackLayout>
+        </Frame>
+    </Grid>
+    </ScrollView>
+
+
+</ContentPage>

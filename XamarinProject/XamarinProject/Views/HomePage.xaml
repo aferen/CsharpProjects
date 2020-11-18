@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:viewmodels="clr-namespace:XamarinProject.Models"
+             xmlns:local="clr-namespace:XamarinProject"
+             x:Class="XamarinProject.Views.HomePage"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Name="BrowseItemsPage">
+
+
+    <NavigationPage.TitleView>
+        <Image Source="{local:ImageResource XamarinProject.Content.img.logo.png}"
+              WidthRequest="45"
+              HeightRequest="45"
+               Margin="-50,0,0,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="ImageClick"
+                NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+
+    </NavigationPage.TitleView>
+
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <StackLayout>
+            <StackLayout BackgroundColor="#0AA2EE">
+                <StackLayout Margin="10,10,10,0" Orientation="Horizontal">
+                    <iconize:IconButton VerticalOptions="Start" Clicked="ShowCase" WidthRequest="40" HeightRequest="40" FontSize="Small" Text="fas-shopping-cart" BackgroundColor="White" HorizontalOptions="Start" TextColor="#018CD1"/>
+                    <Label HorizontalOptions="FillAndExpand" Margin="-5,0,0,0" x:Name="CaseTotal" Text="0 Ürün / 0,00 TL" FontAttributes="Bold" FontSize="15" Padding="10" BackgroundColor="#018CD1" TextColor="White" HeightRequest="40" LineHeight="60"/>
+                </StackLayout>
+                <!--<SearchBar BackgroundColor="#018CD1" Margin="10,-5,10,10" TextColor="White" Placeholder="Aradığınız ürünün adını yazınız." />-->
+                <StackLayout Margin="10,-6,10,10" Orientation="Horizontal">
+                    <Editor HorizontalOptions="FillAndExpand" Margin="0,0,-5,0" Text="Aradığınız ürünün adını yazınız." FontSize="16" BackgroundColor="#018CD1" TextColor="White" HeightRequest="40"/>
+                    <iconize:IconButton VerticalOptions="Start" WidthRequest="40" HeightRequest="40" FontSize="Small" Text="fas-search" BackgroundColor="White" HorizontalOptions="Start" TextColor="#018CD1"/>
+                </StackLayout>
+            </StackLayout>
+
+
+                <Expander Margin="15,15,15,0" IsVisible="False" x:Name="ExpBrand" BackgroundColor="#018CD1"  ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                              ExpandAnimationLength="500"
+                              CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                              CollapseAnimationLength="500">
+                    <Expander.Header>
+                        <Grid>
+                            <Label Padding="5" Text="MARKA LİSTESİ" TextColor="White"/>
+                            <Image Source="expand.png"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}"
+                                                     Value="True">
+                                        <Setter Property="Source"
+                                                    Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </Expander.Header>
+                    <StackLayout BackgroundColor="White">
+                        <Frame Padding="0" BorderColor="#ececec" Margin="5" >
+                            <Picker SelectedIndexChanged="Picker_SelectedIndexChanged"  HorizontalOptions="FillAndExpand">
+                                <Picker.Items>
+                                    <x:String>Tüm Markalar</x:String>
+                                    <x:String>Adafruit</x:String>
+                                    <x:String>China</x:String>
+                                    <x:String>DFRobot</x:String>
+                                    <x:String>Espressif</x:String>
+                                    <x:String>Itead</x:String>
+                                    <x:String>RAK</x:String>
+                                    <x:String>SeeedStudio</x:String>
+                                    <x:String>Türkiye</x:String>
+                                    <x:String>WaveShare</x:String>
+                                </Picker.Items>
+                                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                            </Picker>
+                        </Frame>
+                       
+                    </StackLayout>
+                </Expander>
+     
+            <Expander Margin="10" x:Name="Exp1" BackgroundColor="#018CD1"  ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                              ExpandAnimationLength="500"
+                              CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                              CollapseAnimationLength="500">
+                    <Expander.Header>
+                        <Grid>
+                            <Label Padding="5" Text="KATAGORİ MENÜSÜ" TextColor="White"/>
+                            <Image Source="expand.png"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}"
+                                                     Value="True">
+                                        <Setter Property="Source"
+                                                    Value="collapse.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                        </Grid>
+                    </Expander.Header>
+                    <StackLayout HeightRequest="540" BackgroundColor="White" x:Name="Exp1Sl">
+                    
+                      <CollectionView x:Name="CategoryPanel">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Padding="3" x:Name="Exp2" ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                              ExpandAnimationLength="500"
+                              CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                              CollapseAnimationLength="500">
+                                        <Expander.Header>
+                                        <Grid BindingContext="{Binding .}">
+                                            <StackLayout Orientation="Horizontal">
+                                                <!--<StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnTapped"/>
+                                                </StackLayout.GestureRecognizers>-->
+                                                <iconize:IconImage VerticalOptions="Start" Margin="0,3,0,0" IconSize="15" Icon="fas-plus-circle" HorizontalOptions="Start" IconColor="#018CD1"/>
+                                                <Button BackgroundColor="Transparent" Clicked="MainCategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="Black"  />
+                                            </StackLayout>
+                                        </Grid>
+                                        </Expander.Header>
+                                        <Expander.ContentTemplate>
+                                            <DataTemplate>
+                                               
+                                                    <StackLayout>
+                                                <CollectionView ItemsSource="{Binding Path=SubCategory1List}">
+                                                          <CollectionView.ItemTemplate>
+                                                                <DataTemplate>
+                                                                   
+                                                                        <StackLayout>
+                                                                            <Expander BackgroundColor="#0AA2EE" Padding="15,3">
+                                                                                <Expander.Header>
+                                                                        <Grid BindingContext="{Binding .}">
+                                                                            <StackLayout Orientation="Horizontal">
+                                                                                <iconize:IconImage VerticalOptions="Start" Margin="0,3,0,0" IconSize="15" Icon="fas-plus-circle" HorizontalOptions="Start" IconColor="White"/>
+                                                                                <Button BackgroundColor="Transparent" Clicked="Sub1CategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="White"  />
+                                                                            </StackLayout>
+
+                                                                        </Grid>
+                                                                                </Expander.Header>
+                                                                                <Expander.ContentTemplate>
+                                                                                    <DataTemplate>
+                                                                                            <StackLayout>
+                                                                                                <CollectionView BackgroundColor="#3CBEFF" ItemsSource="{Binding Path=SubCategory2List}">
+                                                                                                    <CollectionView.ItemTemplate>
+                                                                                                        <DataTemplate>
+
+                                                                                                            <Grid BindingContext="{Binding .}">
+                                                                                                                <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                                                                                                    <iconize:IconImage VerticalOptions="Start" Margin="0,5,0,0" IconSize="15" Icon="fas-arrow-right" HorizontalOptions="Start" IconColor="White"/>
+
+                                                                                                    <Button BackgroundColor="Transparent" Clicked="Sub2CategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="White"  />
+                                                                                                                </StackLayout>
+
+                                                                                                            </Grid>
+
+                                                                                        </DataTemplate>
+                                                                                                    </CollectionView.ItemTemplate>
+                                                                                                </CollectionView>
+                                                                                            </StackLayout>
+                                                                                    </DataTemplate>
+                                                                                </Expander.ContentTemplate>
+                                                                            </Expander>
+                                                                    </StackLayout>
+                                                                  
+                                                                </DataTemplate>
+                                                            </CollectionView.ItemTemplate>
+                                                        </CollectionView>
+                                                </StackLayout>
+                                              
+                                            </DataTemplate>
+                                        </Expander.ContentTemplate>
+                                    </Expander>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Expander>
+          
+            <StackLayout x:Name="ImagesPanel">
+                <Image Source="{local:ImageResource XamarinProject.Content.img.img1.jpg}" HeightRequest="265" VerticalOptions="Fill"/>
+                <Image Source="{local:ImageResource XamarinProject.Content.img.img2.jpg}" HeightRequest="525" VerticalOptions="Fill"/>
+                <Image Source="{local:ImageResource XamarinProject.Content.img.img3.jpg}" HeightRequest="525" VerticalOptions="Fill"/>
+                <Image Source="{local:ImageResource XamarinProject.Content.img.img4.jpg}" HeightRequest="525" VerticalOptions="Fill"/>
+            </StackLayout>
+            
+
+            
+            <Label Margin="5,0" Padding="5" x:Name="_Title" FontSize="20" TextDecorations="Underline" TextColor="#018cd1"></Label>
+
+            <StackLayout IsVisible="False" x:Name="FilterPanel">
+                <StackLayout Margin="5,0" Orientation="Horizontal" BackgroundColor="White">
+                    <Picker SelectedIndexChanged="Picker_SelectedIndexChanged_1" WidthRequest="170">
+                        <Picker.Items>
+                            <x:String>Varsayılan Sıralama</x:String>
+                            <x:String>Alfabetik A-Z</x:String>
+                            <x:String>Alfabetik Z-A</x:String>
+                            <x:String>Yeniden Eskiye</x:String>
+                            <x:String>Eskiden Yeniye</x:String>
+                            <x:String>Fiyat Artan</x:String>
+                            <x:String>Fiyat Azalan</x:String>
+                            <x:String>Rastgele</x:String>
+                            <x:String>Puana Gör</x:String>
+                        </Picker.Items>
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                    </Picker>
+                    <CheckBox Color="#018cd1"></CheckBox>
+                    <Label TextColor="Black" Margin="-5,10,0,0" FontSize="16" Text="Stoktakiler"></Label>
+                </StackLayout>
+                <StackLayout Margin="5,0" BackgroundColor="#018cd1" HeightRequest="1"></StackLayout>
+            </StackLayout>
+      
+
+
+
+            <ListView x:Name="ProductMenu" ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout x:Name="{Binding Name}" Margin="5">
+                                    <Frame BorderColor="#018cd1">
+                                        <StackLayout x:Name="ProductPanel" Orientation="Vertical">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                            </Grid>
+                                            <ff:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+			                            WidthRequest="320" HeightRequest="320"
+			                            DownsampleToViewSize="true"
+			                            Source = "{Binding Path=Image}">
+                                            </ff:CachedImage>
+                                            <StackLayout>
+                                                <Label HorizontalOptions="Center" TextColor="Black" FontSize="13" Text="{Binding Path=Title}" Grid.Row="1"></Label>
+                                                <StackLayout>
+                                                    <Label HorizontalOptions="Center" FontSize="16" FontAttributes="Bold" TextColor="#018cd1" Text="{Binding Price, StringFormat='{}{0} TL + KDV'}" Grid.Row="2"></Label>
+                                                    <StackLayout VerticalOptions="CenterAndExpand" HeightRequest="2" BackgroundColor="#018cd1"></StackLayout>
+                                                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                                        <iconize:IconImage VerticalOptions="Start" Margin="0,3,0,0" IconSize="15" Icon="fas-plus-circle" HorizontalOptions="Start" IconColor="#018CD1"/>
+                                                        <Label FontSize="15" HorizontalTextAlignment="Center" TextColor="#018cd1" Text="SEPETE EKLE"></Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout HeightRequest="50" BackgroundColor="#021E2C">
+                <Button FontSize="15" WidthRequest="150" BackgroundColor="Transparent" Clicked="OpenAbout" HorizontalOptions="Start" TextColor="White" Text="Hakkımızda" ></Button>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+    <!--<StackLayout>
+            <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+            <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First Item</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Text}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label Text="{Binding Description}" 
+                                d:Text="Item descripton"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>-->
+
+
+
+</ContentPage>

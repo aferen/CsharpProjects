@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+               xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:viewmodels="clr-namespace:XamarinProject.Models"
+             xmlns:local="clr-namespace:XamarinProject"
+             x:Class="XamarinProject.Views.ProductDetailPage"
+             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Name="BrowseItemsPage">
+
+    <NavigationPage.TitleView>
+        <Image Source="{local:ImageResource XamarinProject.Content.img.logo.png}"
+              WidthRequest="45"
+              HeightRequest="45"
+               Margin="-50,0,0,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="ImageClick"
+                NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+
+    </NavigationPage.TitleView>
+    
+    <ScrollView>
+        <StackLayout x:Name="Product">
+            <StackLayout BackgroundColor="#0AA2EE">
+                <StackLayout Margin="10,10,10,0" Orientation="Horizontal">
+                    <iconize:IconButton VerticalOptions="Start" Clicked="ShowCase" WidthRequest="40" HeightRequest="40" FontSize="Small" Text="fas-shopping-cart" BackgroundColor="White" HorizontalOptions="Start" TextColor="#018CD1"/>
+                    <Label HorizontalOptions="FillAndExpand" Margin="-5,0,0,0" x:Name="CaseTotal" Text="0 Ürün / 0,00 TL" FontAttributes="Bold" FontSize="15" Padding="10" BackgroundColor="#018CD1" TextColor="White" HeightRequest="40" LineHeight="60"/>
+                </StackLayout>
+                <!--<SearchBar BackgroundColor="#018CD1" Margin="10,-5,10,10" TextColor="White" Placeholder="Aradığınız ürünün adını yazınız." />-->
+                <StackLayout Margin="10,-6,10,10" Orientation="Horizontal">
+                    <Editor HorizontalOptions="FillAndExpand" Margin="0,0,-5,0" Text="Aradığınız ürünün adını yazınız." FontSize="16" BackgroundColor="#018CD1" TextColor="White" HeightRequest="40"/>
+                    <iconize:IconButton VerticalOptions="Start" WidthRequest="40" HeightRequest="40" FontSize="Small" Text="fas-search" BackgroundColor="White" HorizontalOptions="Start" TextColor="#018CD1"/>
+                </StackLayout>
+            </StackLayout>
+            <!--<Expander Margin="10" x:Name="Exp1" BackgroundColor="#018CD1"  ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                              ExpandAnimationLength="500"
+                              CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                              CollapseAnimationLength="500">
+                <Expander.Header>
+                    <Grid>
+                        <Label Padding="5" Text="KATAGORİ MENÜSÜ" TextColor="White"/>
+                        <Image Source="expand.png"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}"
+                                                     Value="True">
+                                    <Setter Property="Source"
+                                                    Value="collapse.png" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Grid>
+                </Expander.Header>
+                <StackLayout HeightRequest="540" BackgroundColor="White" x:Name="Exp1Sl">
+
+                    <CollectionView x:Name="CategoryPanel">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Expander Padding="3" x:Name="Exp2" ExpandAnimationEasing="{x:Static Easing.CubicIn}"
+                              ExpandAnimationLength="500"
+                              CollapseAnimationEasing="{x:Static Easing.CubicOut}"
+                              CollapseAnimationLength="500">
+                                    <Expander.Header>
+                                        <Grid BindingContext="{Binding .}">
+                                            <StackLayout Orientation="Horizontal">
+                                                --><!--<StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnTapped"/>
+                                                </StackLayout.GestureRecognizers>--><!--
+                                                <iconize:IconImage VerticalOptions="Start" Margin="0,3,0,0" IconSize="15" Icon="fas-plus-circle" HorizontalOptions="Start" IconColor="#018CD1"/>
+                                                <Button BackgroundColor="Transparent" Clicked="MainCategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="Black"  />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Expander.Header>
+                                    <Expander.ContentTemplate>
+                                        <DataTemplate>
+
+                                            <StackLayout>
+                                                <CollectionView ItemsSource="{Binding Path=SubCategory1List}">
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate>
+
+                                                            <StackLayout>
+                                                                <Expander BackgroundColor="#0AA2EE" Padding="15,3">
+                                                                    <Expander.Header>
+                                                                        <Grid BindingContext="{Binding .}">
+                                                                            <StackLayout Orientation="Horizontal">
+                                                                                <iconize:IconImage VerticalOptions="Start" Margin="0,3,0,0" IconSize="15" Icon="fas-plus-circle" HorizontalOptions="Start" IconColor="White"/>
+                                                                                <Button BackgroundColor="Transparent" Clicked="Sub1CategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="White"  />
+                                                                            </StackLayout>
+
+                                                                        </Grid>
+                                                                    </Expander.Header>
+                                                                    <Expander.ContentTemplate>
+                                                                        <DataTemplate>
+                                                                            <StackLayout>
+                                                                                <CollectionView BackgroundColor="#3CBEFF" ItemsSource="{Binding Path=SubCategory2List}">
+                                                                                    <CollectionView.ItemTemplate>
+                                                                                        <DataTemplate>
+
+                                                                                            <Grid BindingContext="{Binding .}">
+                                                                                                <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                                                                                                    <iconize:IconImage VerticalOptions="Start" Margin="0,5,0,0" IconSize="15" Icon="fas-arrow-right" HorizontalOptions="Start" IconColor="White"/>
+
+                                                                                                    <Button BackgroundColor="Transparent" Clicked="Sub2CategoryClick" CommandParameter="{Binding Id}" HorizontalOptions="Start" Padding="0" Text="{Binding Name}" Margin="0" HeightRequest="20" TextColor="White"  />
+                                                                                                </StackLayout>
+
+                                                                                            </Grid>
+
+                                                                                        </DataTemplate>
+                                                                                    </CollectionView.ItemTemplate>
+                                                                                </CollectionView>
+                                                                            </StackLayout>
+                                                                        </DataTemplate>
+                                                                    </Expander.ContentTemplate>
+                                                                </Expander>
+                                                            </StackLayout>
+
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+                                            </StackLayout>
+
+                                        </DataTemplate>
+                                    </Expander.ContentTemplate>
+                                </Expander>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Expander>-->
+
+            <Label x:Name="_Title" Margin="5,0,0,0" FontSize="16" TextDecorations="Underline" FontAttributes="Bold"  TextColor="#018cd1" Grid.Row="2"></Label>
+
+            <Frame Margin="10" BorderColor="#E6E6E6">
+                <CollectionView x:Name="ProductPanel">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid BackgroundColor="White">
+                                <StackLayout><!--FAFAFA-->
+                                    <ff:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+			                            WidthRequest="320" HeightRequest="320"
+			                            DownsampleToViewSize="true"
+			                            Source = "{Binding Path=Image}">
+                                    </ff:CachedImage>
+                                    <ff:CachedImage HorizontalOptions="Start" VerticalOptions="Start"
+			                            WidthRequest="80" HeightRequest="80"
+			                            DownsampleToViewSize="true"
+			                            Source = "{Binding Path=Image}">
+                                    </ff:CachedImage>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" FontSize="22" TextColor="Black"/>
+                                        <Label Margin="0,5,0,16" Text="{Binding Name}" TextColor="Black" FontSize="16"/>
+                                        <Label Margin="0,4" TextColor="Black" Text="{Binding Origin, StringFormat='Marka/Menşei : {0}'}" FontSize="16"/>
+                                        <Label Margin="0,4" TextColor="Black" Text="{Binding StockCode, StringFormat='Stok Kodu : {0}'}" FontSize="16"/>
+                                        <Label Margin="0,4" TextColor="Black" Text="{Binding Price, StringFormat='{}{0} TL + KDV'}" FontSize="15"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Margin="0,5" Padding="4" Text="{Binding NewPrice, StringFormat='{}{0} TL'}" TextColor="#3CBEFF" FontAttributes="Bold" FontSize="19"/>
+                                            <Label Margin="0,5" Text="KDV Dahil"  FontAttributes="Bold" TextColor="Black" FontSize="22"/>
+                                        </StackLayout>
+                                        <StackLayout HeightRequest="40" Orientation="Horizontal">
+                                            <Button Clicked="Decrease" BorderColor="#018cd1" BorderWidth="1" BackgroundColor="White" FontSize="17" WidthRequest="40" FontAttributes="Bold" HeightRequest="40" Text="-"/>
+                                            <Frame BorderColor="#018cd1" HeightRequest="20" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="7">
+                                                <StackLayout>
+                                                    <Label  x:Name="Cnt" TextColor="Black" BackgroundColor="White" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="1" FontSize="16"/>
+                                                    <!--<Editor  x:Name="Cnt" TextColor="Black" BackgroundColor="White" HorizontalOptions="FillAndExpand"  Text="1" FontSize="16"/>-->
+                                                </StackLayout>
+                                            </Frame>
+                                            <Button Clicked="Increase" BorderColor="#018cd1" BorderWidth="1" BackgroundColor="White" FontSize="17" WidthRequest="40" FontAttributes="Bold" HeightRequest="40" Text="+"/>
+                                        </StackLayout>
+                                        <Button BackgroundColor="#5CB85C" Clicked="AddCase" TextColor="White" FontSize="17" FontAttributes="Bold" HeightRequest="45" Text="Sepete Ekle" />
+                                        <StackLayout HorizontalOptions="Center" Margin="0,5,0,0" Orientation="Horizontal">
+                                            <iconize:IconImage VerticalOptions="Start" Margin="0,4,0,0" IconSize="15" Icon="fas-star" HorizontalOptions="Start" IconColor="#0CB57B"/>
+                                            <Label TextColor="#0CB57B" HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="Alışveriş Listeme Ekle" FontSize="18"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <StackLayout>
+                <tabview:TabViewControl HeaderTabTextColor="#018cd1" HorizontalOptions="FillAndExpand" HeightRequest="400" HeaderBackgroundColor="White" HeaderSelectionUnderlineColor="#018cd1" VerticalOptions="FillAndExpand" x:Name="theTabView">
+                    <tabview:TabViewControl.ItemSource>
+                        <tabview:TabItem HeaderText="Ürün Özellikleri">
+                            <ContentView>
+                                <ContentView.Content>
+                                    <CollectionView x:Name="ProductPanel2">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout>
+                                                    <Label Text="{Binding Title}" Margin="10" FontSize="18" TextDecorations="Underline" FontAttributes="Bold" VerticalTextAlignment="Start" TextColor="#018cd1" HorizontalTextAlignment="Start"></Label>
+                                                    <Label Margin="20,0,20,20 " TextColor="Black" Text="{Binding Description}"></Label>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </ContentView.Content>
+                            </ContentView>
+                        </tabview:TabItem>
+                        <tabview:TabItem HeaderText="Ödeme     Seçenekler">
+                            <ContentView>
+                                <ContentView.Content>
+                                    <Label Text=""/>
+                                </ContentView.Content>
+                            </ContentView>
+                        </tabview:TabItem>
+                        <tabview:TabItem HeaderText="Yorumlar">
+                            <ContentView>
+                                <ContentView.Content>
+                                    <CollectionView x:Name="CommentPanel">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Margin="0,10,0,0" Orientation="Vertical">
+                                                    <StackLayout BackgroundColor="Black" WidthRequest="1"></StackLayout>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                    </Grid>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <StackLayout Margin="10" WidthRequest="150"  Orientation="Vertical">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <iconize:IconLabel FontSize="Large" Text="far-thumbs-up" HorizontalOptions="Center" TextColor="Black"/>
+                                                                <Label Margin="2,4" TextColor="Black" FontSize="12" Text="{Binding YesCount, StringFormat='Evet: {0}'}" Grid.Row="1"></Label>
+                                                                <iconize:IconLabel FontSize="Large" Text="far-thumbs-down" HorizontalOptions="Center" TextColor="Black"/>
+                                                                <Label Margin="2,4" TextColor="Black" FontSize="12" Text="{Binding NoCount, StringFormat='Hayır: {0}'}" Grid.Row="1"></Label>
+                                                            </StackLayout>
+                                                            <Label Text="Yorumu onaylıyor musunuz?" FontSize="12" TextColor="Black"></Label>
+                                                            <StackLayout Margin="0,10" Orientation="Horizontal">
+                                                                    <Button BackgroundColor="#449D44" BorderColor="#449D44" TextColor="White" FontSize="8" WidthRequest="50" FontAttributes="Bold" HeightRequest="30" Text="Evet"/>
+                                                                
+                                                                    <Button BackgroundColor="#D9534F" BorderColor="#D9534F" TextColor="White" FontSize="8" WidthRequest="50" FontAttributes="Bold" HeightRequest="30" Text="Hayır"/>
+                                                               
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <StackLayout WidthRequest="250" Margin="5" Orientation="Vertical">
+                                                            <Label Margin="5" TextColor="Black" FontAttributes="Bold" FontSize="13" Text="{Binding Title}"></Label>
+                                                            <Label Margin="5" TextColor="Black" FontSize="12" Text="{Binding Description}"></Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </ContentView.Content>
+                            </ContentView>
+                        </tabview:TabItem>
+                        <tabview:TabItem HeaderText="Resimler">
+                            <ContentView>
+                                <ContentView.Content>
+                                    <Label Text=""/>
+                                </ContentView.Content>
+                            </ContentView>
+                        </tabview:TabItem>
+                        <tabview:TabItem HeaderText="Döküman">
+                            <ContentView>
+                                <ContentView.Content>
+                                    <Label Text=""/>
+                                </ContentView.Content>
+                            </ContentView>
+                        </tabview:TabItem>
+                    </tabview:TabViewControl.ItemSource>
+                </tabview:TabViewControl>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

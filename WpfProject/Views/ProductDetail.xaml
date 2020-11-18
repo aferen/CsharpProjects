@@ -1,0 +1,121 @@
+﻿<Page x:Class="WpfProject.Views.ProductDetail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfProject.Views"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="800"
+      Loaded="Window_Loaded"
+      Title="ProductDetail">
+
+    <StackPanel Margin="10 0 0 0" x:Name="Product" Width="890">
+        <TextBlock x:Name="_Title" Margin="5 0 0 0" FontSize="16" TextDecorations="Underline" FontWeight="Bold" VerticalAlignment="Top" Foreground="#018cd1" HorizontalAlignment="Left" Grid.Row="2"></TextBlock>
+
+        <Border BorderBrush="#E6E6E6" BorderThickness="1">
+            <Grid VerticalAlignment="Top" Background="White" Height="420">
+                <!--<Grid.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="1"/>
+            </Grid.Effect>-->
+                <Image Source="{Binding Image}" HorizontalAlignment="Left" Margin="10"/>
+                <ListView Width="200" BorderBrush="Transparent" Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <ListViewItem HorizontalAlignment="Left" Width="60" Height="60">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                    </ListViewItem>
+                </ListView>
+                <StackPanel Height="600" Width="390" Background="#FAFAFA" Margin="500 0 0 0" HorizontalAlignment="Left">
+                    <StackPanel Margin="20">
+                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" FontSize="20" Margin="0 5"/>
+                        <TextBlock Margin="0 20 0 20" Text="{Binding Name}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Margin="0 5" Text="{Binding Origin, StringFormat=Marka/Menşei : {0}}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Margin="0 5" Text="{Binding StockCode, StringFormat=Stok Kodu : {0}}" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Margin="0 5" Text="{Binding Price, StringFormat={}{0} TL + KDV}" FontWeight="Light" FontSize="15" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0 5" Text="{Binding NewPrice, StringFormat={}{0} TL}" Foreground="#3CBEFF" FontWeight="Bold" FontSize="26" TextWrapping="Wrap"/>
+                            <TextBlock Margin="0 5" Text="   KDV Dahil" Foreground="Black" FontWeight="Medium" Padding="0 10" FontSize="16" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" Orientation="Horizontal">
+                            <Button Cursor="Hand" Background="White" BorderBrush="#3CBEFF" HorizontalAlignment="Left" Foreground="#3CBEFF" FontSize="24" Width="40" FontWeight="Bold" Height="40" Content="-" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"/>
+                            <Label Background="White" Name="Cnt" BorderBrush="#3CBEFF" BorderThickness="1" HorizontalContentAlignment="Center" VerticalAlignment="Center" Width="60" Height="40" HorizontalAlignment="Center"  Foreground="#3CBEFF" Content="1" FontSize="18"/>
+                            <Button Cursor="Hand" Background="White" BorderBrush="#3CBEFF" HorizontalAlignment="Left" Foreground="#3CBEFF" FontSize="24" Width="40" FontWeight="Bold" Height="40" Content="+"  PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp_1"/>
+                            <Button Cursor="Hand" Background="#5CB85C" BorderBrush="#5CB85C" HorizontalAlignment="Right" Foreground="White" FontSize="24" Width="165" Height="40" Content="Sepete Ekle" Margin="10 0 20 0" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp_2"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Star" Width="20" Height="20" Margin="5 2" Foreground="#0CB57B" Grid.Row="2"/>
+                            <TextBlock Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#0CB57B" Text="Alışveriş Listeme Ekle" FontSize="18" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid>
+            <TabControl Margin="0 10" Width="890">
+                <TabItem Height="60" FontSize="16" Background="White" Foreground="#3CBEFF" Header="Ürün Özellikleri">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" Margin="10" FontSize="18" TextDecorations="Underline" FontWeight="Bold" VerticalAlignment="Top" Foreground="#018cd1" HorizontalAlignment="Left" Grid.Row="2"></TextBlock>
+                        <TextBlock Margin="15" Foreground="Black" TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
+                    </StackPanel>
+                </TabItem>
+                <TabItem  Height="60" FontSize="16" Background="White" Foreground="#3CBEFF" Header="Ödeme Seçenekleri" />
+                <TabItem  Height="60" FontSize="16" Background="White" Foreground="#3CBEFF" Header="{Binding CommentCount}" HeaderStringFormat="Yorumlar ({0})">
+                    <StackPanel>
+                        <TextBlock Margin="5 5 0 0" FontSize="12" VerticalAlignment="Top" Foreground="Black" Text="{Binding CommentCount, StringFormat=Bu ürün için toplam {0} yorum yapılmıştır. Yorum Yaz}" HorizontalAlignment="Left"></TextBlock>
+                        <!--<Border Height="2" Width="140" HorizontalAlignment="Left" Background="#018cd1"></Border>-->
+                        <ItemsControl x:Name="Comment">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0 10 0 0" Width="860" Height="130" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical">
+                                        <Border BorderBrush="Black" BorderThickness="0.1"></Border>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                        </Grid>
+                                        <StackPanel Orientation="Horizontal" Width="860" HorizontalAlignment="Left">
+                                            <StackPanel Orientation="Vertical" Width="150" HorizontalAlignment="Left">
+                                                <StackPanel Margin="0 20 0 10" Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="Like" Width="15" Height="15" Margin="5" Foreground="#6C6C6C" Grid.Row="2"/>
+                                                    <TextBlock Margin="2 4" Foreground="Black" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Center" Text="{Binding YesCount, StringFormat=Evet: {0}}" Grid.Row="1"></TextBlock>
+                                                    <materialDesign:PackIcon Kind="Dislike" Width="15" Height="15" Margin="5" Foreground="#6C6C6C" Grid.Row="2"/>
+                                                    <TextBlock Margin="2 4" Foreground="Black" TextWrapping="Wrap" FontSize="12" VerticalAlignment="Center" Text="{Binding NoCount, StringFormat=Hayır: {0}}" Grid.Row="1"></TextBlock>
+                                                </StackPanel>
+                                                <TextBlock Text="Yorumu onaylıyor musunuz?" FontSize="12" Foreground="Black"></TextBlock>
+                                                <StackPanel Margin="0 10" Orientation="Horizontal">
+                                                    <Border CornerRadius="6" Margin="10 0" BorderBrush="#449D44" BorderThickness="2" HorizontalAlignment="Center" >
+                                                        <Button Cursor="Hand" Background="#449D44" BorderBrush="#449D44"   HorizontalAlignment="Left" Foreground="White" FontSize="12" Width="50" FontWeight="Bold" Height="25" Content="Evet"/>
+                                                    </Border>
+                                                    <Border CornerRadius="6" BorderBrush="#D9534F" BorderThickness="2" HorizontalAlignment="Center" >
+                                                        <Button Cursor="Hand" Background="#D9534F" BorderBrush="#D9534F"   HorizontalAlignment="Left" Foreground="White" FontSize="12" Width="50" FontWeight="Bold" Height="25" Content="Hayır"/>
+                                                    </Border>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Margin="0 10" Orientation="Vertical">
+                                                <TextBlock Margin="10 4" Foreground="Black" FontWeight="Bold" TextWrapping="Wrap" FontSize="13" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
+                                                <TextBlock Margin="10 4" Foreground="Black" TextWrapping="Wrap" FontSize="12" Width="600" VerticalAlignment="Center" Text="{Binding Description}"></TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </TabItem>
+                <TabItem  Height="60" FontSize="16" Background="White" Foreground="#3CBEFF" Header="Resimler" />
+                <TabItem  Height="60" FontSize="16" Background="White" Foreground="#3CBEFF" Header="Döküman" />
+            </TabControl>
+        </Grid>
+
+
+    </StackPanel>
+</Page>

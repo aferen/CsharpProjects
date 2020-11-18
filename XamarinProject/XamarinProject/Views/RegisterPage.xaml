@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              xmlns:local="clr-namespace:XamarinProject"
+               xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             x:Class="XamarinProject.Views.RegisterPage">
+
+
+    <NavigationPage.TitleView>
+        <Image Source="{local:ImageResource XamarinProject.Content.img.logo.png}"
+              WidthRequest="45"
+              HeightRequest="45"
+               Margin="-50,0,0,0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="ImageClick"
+                NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+
+    </NavigationPage.TitleView>
+
+    <StackLayout Margin="10">
+        <Label x:Name="AlertText" HeightRequest="32" Padding="10,5" Margin="0,0,0,10" IsVisible="False" FontSize="16" BackgroundColor="Red" TextColor="White"></Label>
+        <Frame Padding="0" x:Name="xBorder" BorderColor="#ececec">
+            <StackLayout x:Name="LoginPanel" Orientation="Horizontal">
+                <StackLayout>
+                    <StackLayout HeightRequest="40" BackgroundColor="#ececec" Orientation="Horizontal">
+                        <iconize:IconImage VerticalOptions="Start" WidthRequest="40" HeightRequest="40" IconSize="25" Icon="fas-user-plus" HorizontalOptions="Start" IconColor="#666666"/>
+                        <Label Margin="0,0,0,5" Padding="5" FontSize="22" WidthRequest="450" HeightRequest="40"  BackgroundColor="#ececec" Text="ÜYE KAYIT"></Label>
+                    </StackLayout>
+                    <Label Margin="0,0,0,10" Padding="3" Text="Üyelik Bilgileri"></Label>
+                    <Label Text="E-Mail"></Label>
+                    <Entry HeightRequest="40" x:Name="SignUpEmail" Margin="5,0,5,5" FontSize="15"></Entry>
+                    <Label Text="Şifre"></Label>
+                    <Entry x:Name="SignUpPassword1" IsPassword="True" HeightRequest="40" Margin="5,0,5,5" FontSize="15"></Entry>
+                    <Label Text="Şifre Tekrar"></Label>
+                    <Entry x:Name="SignUpPassword2" HeightRequest="40" IsPassword="True"  Margin="5,0,5,5" FontSize="15"></Entry>
+                    <Button HeightRequest="40" WidthRequest="150"  Margin="10" Text="KAYIT OL" FontSize="16" TextColor="White" BackgroundColor="#012990" Clicked="RegisterEvent"></Button>
+                </StackLayout>
+
+            </StackLayout>
+
+        </Frame>
+       
+    </StackLayout>
+
+
+
+</ContentPage>
