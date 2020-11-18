@@ -1,5 +1,5 @@
 # C# Project
 - Wpf Application
-- Zamarin Application
+- Xamarin Application
 - .Net Core Web Service
 - XUnit Test
